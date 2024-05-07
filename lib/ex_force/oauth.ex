@@ -109,6 +109,8 @@ defmodule ExForce.OAuth do
 
     client_secret = Keyword.fetch!(payload, :client_secret)
 
+    IO.inspect(Client.request(client, %Request{method: :post, url: "/services/oauth2/token", body: payload}))
+
     case Client.request(client, %Request{
            method: :post,
            url: "/services/oauth2/token",
