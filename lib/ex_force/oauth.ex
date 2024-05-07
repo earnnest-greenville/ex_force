@@ -117,7 +117,7 @@ defmodule ExForce.OAuth do
            body: payload
          }) do
       {:ok,
-       %Response{
+       %ExForce.Response{
          status: 200,
          body:
            map = %{
