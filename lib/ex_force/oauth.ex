@@ -104,6 +104,7 @@ defmodule ExForce.OAuth do
   def get_token(url, payload) when is_binary(url), do: url |> build_client() |> get_token(payload)
 
   def get_token(client, payload) do
+    IO.inspect(payload, label: "payload")
     client_secret = Keyword.fetch!(payload, :client_secret)
 
     case Client.request(client, %Request{
