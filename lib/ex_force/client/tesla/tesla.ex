@@ -66,6 +66,8 @@ defmodule ExForce.Client.Tesla do
   """
   @impl ExForce.Client
   def build_oauth_client(instance_url, opts \\ []) do
+    IO.inspect(instance_url, label: "Instance URL oauth call")
+
     Tesla.client(
       [
         {Tesla.Middleware.BaseUrl, instance_url},
