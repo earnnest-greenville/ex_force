@@ -129,6 +129,8 @@ defmodule ExForce.OAuth do
              "access_token" => access_token
            }
        }} ->
+        IO.inspect(token_type, label: "token_type")
+
         verify_signature(
           %OAuthResponse{
             token_type: token_type,
@@ -142,6 +144,7 @@ defmodule ExForce.OAuth do
           },
           client_secret
         )
+        |> IO.inspect(label: "verify sig call")
 
       {:ok, %Response{body: body}} ->
         {:error, body}
