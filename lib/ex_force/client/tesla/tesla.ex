@@ -41,7 +41,6 @@ defmodule ExForce.Client.Tesla do
   end
 
   def build_client(instance_url, opts) when is_binary(instance_url) do
-    IO.inspect(instance_url, label: "Instance URL")
     Tesla.client(
       [
          {ExForce.Client.Tesla.Middleware,
@@ -78,8 +77,6 @@ defmodule ExForce.Client.Tesla do
       ],
       Keyword.get(opts, :adapter)
     )
-    |> IO.inspect(label: "Tesla Client call")
-
   end
 
   @doc """
