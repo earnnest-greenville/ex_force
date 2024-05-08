@@ -71,9 +71,9 @@ defmodule ExForce.Client.Tesla do
     Tesla.client(
       [
         {Tesla.Middleware.BaseUrl, instance_url},
-        {Tesla.Middleware.Compression, format: "gzip"},
         # {Tesla.Middleware.DecodeJson, engine: Jason},
         {Tesla.Middleware.JSON, engine: Jason},
+        {Tesla.Middleware.Compression, format: "gzip"},
         Tesla.Middleware.FormUrlencoded,
         {Tesla.Middleware.Headers, get_headers(opts)}
       ],
