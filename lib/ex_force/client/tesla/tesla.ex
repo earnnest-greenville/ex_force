@@ -66,7 +66,6 @@ defmodule ExForce.Client.Tesla do
   """
   @impl ExForce.Client
   def build_oauth_client(instance_url, opts \\ []) do
-    IO.inspect(instance_url, label: "Instance URL oauth call")
 
     Tesla.client(
       [
@@ -79,6 +78,8 @@ defmodule ExForce.Client.Tesla do
       ],
       Keyword.get(opts, :adapter)
     )
+    |> IO.inspect(label: "Tesla Client call")
+
   end
 
   @doc """
