@@ -104,12 +104,7 @@ defmodule ExForce.OAuth do
   def get_token(url, payload) when is_binary(url), do: url |> build_client() |> get_token(payload)
 
   def get_token(client, payload) do
-    IO.inspect(client, label: "client")
-    IO.inspect(payload, label: "payload")
-
     client_secret = Keyword.fetch!(payload, :client_secret)
-
-    IO.inspect(Client.request(client, %Request{method: :post, url: "/services/oauth2/token", body: payload}))
 
     case Client.request(client, %Request{
            method: :post,
@@ -129,8 +124,6 @@ defmodule ExForce.OAuth do
              "access_token" => access_token
            }
        }} ->
-        IO.inspect(token_type, label: "token_type")
-
         verify_signature(
           %OAuthResponse{
             token_type: token_type,
@@ -144,13 +137,11 @@ defmodule ExForce.OAuth do
           },
           client_secret
         )
-        |> IO.inspect(label: "verify sig call")
 
       {:ok, %Response{body: body}} ->
         {:error, body}
 
       {:error, _} = other ->
-        IO.inspect(other, label: "other")
         other
     end
   end
